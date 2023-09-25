@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:provider/provider.dart';
 import 'AddContactScreen.dart';
 import 'ContactListScreen.dart';
 import 'EditContactScreen.dart';
 
 void main() {
-  runApp(ContactDiaryApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ContactListProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
-class ContactDiaryApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: ContactListScreen(),
-      routes: {
+    routes: {
         '/addContact': (context) => AddContactScreen(),
-        '/editContact': (context) => EditContactScreen(),
+        '/editContact': (context) => EditContactScreen(index: 0,),
       },
     );
   }
@@ -29,8 +33,6 @@ class Contact {
 
   Contact(this.name, this.phoneNumber);
 }
-
-
 
 
 

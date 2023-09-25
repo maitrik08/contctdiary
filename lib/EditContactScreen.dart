@@ -1,25 +1,38 @@
 import 'package:flutter/material.dart';
-
-import 'main.dart';
-
+import 'package:provider/provider.dart';
+import 'package:shareprefcont/ContactListScreen.dart';
+import 'package:shareprefcont/main.dart';
 class EditContactScreen extends StatefulWidget {
+  final int index;
+
+  EditContactScreen({required this.index});
+
   @override
-  _EditContactScreenState createState() => _EditContactScreenState();
+  _EditContactScreenState createState() => _EditContactScreenState(index: index);
 }
 
 class _EditContactScreenState extends State<EditContactScreen> {
-  late Contact contact; // Define the contact property here
-  final nameController = TextEditingController();
-  final phoneNumberController = TextEditingController();
+  late TextEditingController nameController;
+  late TextEditingController phoneNumberController;
+  final int index;
+
+  _EditContactScreenState({required this.index});
+
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    contact = ModalRoute.of(context)!.settings.arguments as Contact;
-    nameController.text = contact.name;
-    phoneNumberController.text = contact.phoneNumber;
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    phoneNumberController = TextEditingController();
   }
+
   @override
   Widget build(BuildContext context) {
+    final contact = ModalRoute.of(context)!.settings.arguments as Contact;
+
+    // Initialize the text controllers with the contact's information.
+    nameController.text = contact.name;
+    phoneNumberController.text = contact.phoneNumber;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Contact'),
@@ -43,15 +56,13 @@ class _EditContactScreenState extends State<EditContactScreen> {
                 final name = nameController.text;
                 final phoneNumber = phoneNumberController.text;
                 if (name.isNotEmpty && phoneNumber.isNotEmpty) {
-                  Navigator.pop(
-                    context,
-                    Contact(name, phoneNumber),
-                  );
+                  final updatedContact = Contact(name, phoneNumber);
+                  Provider.of<ContactListProvider>(context, listen: false).updateContact(index, updatedContact);
+                  Navigator.pop(context, updatedContact);
                 } else {
-                  Navigator.pop(context, null); // User canceled editing
+                  Navigator.pop(context, null);
                 }
               },
-
               child: Text('Save Changes'),
             ),
           ],

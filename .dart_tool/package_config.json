@@ -68,6 +68,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.16",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/flutter%20src/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -80,6 +86,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "js",
       "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
@@ -88,6 +100,36 @@
     {
       "name": "lints",
       "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "local_auth",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/local_auth-2.1.7",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "local_auth_android",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/local_auth_android-1.0.34",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "local_auth_ios",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/local_auth_ios-1.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "local_auth_platform_interface",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/local_auth_platform_interface-1.0.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "local_auth_windows",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/local_auth_windows-1.0.10",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -106,6 +148,12 @@
     {
       "name": "meta",
       "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "nested",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -144,6 +192,12 @@
       "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///C:/Users/Excel/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "shared_preferences",
@@ -254,7 +308,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-09-18T12:26:20.969923Z",
+  "generated": "2023-09-25T10:42:08.497817Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

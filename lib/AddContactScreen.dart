@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'main.dart';
 
-class AddContactScreen extends StatefulWidget {
-  @override
-  _AddContactScreenState createState() => _AddContactScreenState();
-}
-
-class _AddContactScreenState extends State<AddContactScreen> {
+class AddContactScreen extends StatelessWidget {
   final nameController = TextEditingController();
   final phoneNumberController = TextEditingController();
 
@@ -36,10 +30,8 @@ class _AddContactScreenState extends State<AddContactScreen> {
                 final name = nameController.text;
                 final phoneNumber = phoneNumberController.text;
                 if (name.isNotEmpty && phoneNumber.isNotEmpty) {
-                  Navigator.pop(
-                    context,
-                    Contact(name, phoneNumber),
-                  );
+                  final newContact = Contact(name, phoneNumber);
+                  Navigator.pop(context, newContact);
                 }
               },
               child: Text('Save Contact'),
