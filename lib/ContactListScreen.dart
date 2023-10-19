@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shareprefcont/SettingSceen.dart';
 
 import 'EditContactScreen.dart';
 import 'main.dart';
@@ -17,43 +19,32 @@ class ContactListScreenState extends State<ContactListScreen> {
   void initState() {
     super.initState();
     Provider.of<ContactListProvider>(context, listen: false).loadContacts();
-    authenticate();
-  }
-
-  Future<void> authenticate() async {
-    final bool canAuthenticateWithBiometrics = await localAuth.canCheckBiometrics;
-    final bool canAuthenticate =
-        canAuthenticateWithBiometrics || await localAuth.isDeviceSupported();
-    if (canAuthenticate) {
-      await localAuth.authenticate(localizedReason: 'check');
-    }
-    if (!canAuthenticate) {
-      // Handle authentication failure, e.g., show a message and exit the app
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Authentication Failed'),
-            content: Text('Authentication is required to access the app.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
+      backgroundColor: themeProvider.currentTheme.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('Contact Diary'),
+        backgroundColor: themeProvider.currentTheme.scaffoldBackgroundColor,
+        leading: SizedBox(),
+        leadingWidth: 0,
+        title: Text(
+          'Contact Diary',
+          style: TextStyle(
+              color: themeProvider.currentTheme.iconTheme.color
+          ),
+        ),
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingSceen()));
+            },
+            child: Icon(Icons.settings,color: themeProvider.currentTheme.iconTheme.color,),
+          ),
+          SizedBox(width: 20,)
+        ],
       ),
       body: Consumer<ContactListProvider>(
         builder: (context, provider, child) {
@@ -63,14 +54,16 @@ class ContactListScreenState extends State<ContactListScreen> {
             itemBuilder: (context, index) {
               final contact = contacts[index];
               return ListTile(
-                title: Text(contact.name),
-                subtitle: Text(contact.phoneNumber),
+                leading: Icon(CupertinoIcons.profile_circled,color: Colors.grey,size: 60,),
+                title: Text('${contact.name} ${contact.lastname}',style: themeProvider.currentTheme.textTheme.bodyMedium,),
+                subtitle: Text(contact.phoneNumber,style: themeProvider.currentTheme.textTheme.bodyMedium,),
                 trailing: PopupMenuButton(
+                  color: themeProvider.currentTheme.focusColor,
                   itemBuilder: (context) => [
                     PopupMenuItem(
                       child: TextButton.icon(
-                        label: Text('Edit'),
-                        icon: Icon(Icons.edit),
+                        label: Text('Edit',style: TextStyle(color: themeProvider.currentTheme.scaffoldBackgroundColor)),
+                        icon: Icon(Icons.edit,color: themeProvider.currentTheme.scaffoldBackgroundColor,),
                         onPressed: () async {
                           final editedContact = await Navigator.push(
                             context,
@@ -89,28 +82,47 @@ class ContactListScreenState extends State<ContactListScreen> {
                     ),
                     PopupMenuItem(
                       child: TextButton.icon(
-                        label: Text('Delete'),
-                        icon: Icon(Icons.delete),
+                        label: Text('Delete',style: TextStyle(color: themeProvider.currentTheme.scaffoldBackgroundColor)),
+                        icon: Icon(Icons.delete,color: themeProvider.currentTheme.scaffoldBackgroundColor),
                         onPressed: () {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Delete Contact'),
-                                content: Text('Are you sure you want to delete this contact?'),
+                                backgroundColor: themeProvider.currentTheme.focusColor,
+                                title: Text('Delete Contact',
+                                  style: TextStyle(
+                                  color: themeProvider.currentTheme.scaffoldBackgroundColor
+                                ),),
+                                content: Text(
+                                    'Are you sure you want to delete this contact?',
+                                  style: TextStyle(
+                                      color: themeProvider.currentTheme.scaffoldBackgroundColor
+                                  ),
+                                ),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('Cancel'),
+                                    child: Text(
+                                        'Cancel',
+                                      style: TextStyle(
+                                          color: themeProvider.currentTheme.scaffoldBackgroundColor
+                                      ),
+                                    ),
                                   ),
                                   TextButton(
                                     onPressed: () {
                                       provider.deleteContact(index);
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('Delete'),
+                                    child: Text(
+                                        'Delete',
+                                      style: TextStyle(
+                                          color: themeProvider.currentTheme.scaffoldBackgroundColor
+                                      ),
+                                    ),
                                   ),
                                 ],
                               );
@@ -140,21 +152,26 @@ class ContactListScreenState extends State<ContactListScreen> {
   }
 }
 
+
 class ContactListProvider extends ChangeNotifier {
   List<Contact> contacts = [];
-
-  void loadContacts() async {
+  bool isSwitched = false;
+  Future<List> loadContacts() async {
     final prefs = await SharedPreferences.getInstance();
     final contactsData = prefs.getStringList('contacts');
     if (contactsData != null) {
       contacts = contactsData.map((data) {
         final parts = data.split(',');
-        return Contact(parts[0], parts[1]);
+        return Contact(parts[0], parts[1],parts[2],parts[3]);
       }).toList();
+
       notifyListeners();
     }
+    final prefs1 = await SharedPreferences.getInstance();
+    isSwitched = prefs1.getBool('isSwitched') ?? false;
+    return contacts;
+   notifyListeners();
   }
-
   void addContact(Contact newContact) {
     contacts.add(newContact);
     saveContacts();
@@ -176,9 +193,15 @@ class ContactListProvider extends ChangeNotifier {
   void saveContacts() async {
     final prefs = await SharedPreferences.getInstance();
     final contactsData = contacts.map((contact) {
-      return '${contact.name},${contact.phoneNumber}';
+      return '${contact.name},${contact.lastname},${contact.phoneNumber},${contact.Email}';
     }).toList();
     prefs.setStringList('contacts', contactsData);
+  }
+  void toggleSwitch(bool newValue) async{
+    isSwitched = newValue;
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isSwitched', isSwitched);
+    notifyListeners();
   }
 }
 

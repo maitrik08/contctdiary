@@ -1,15 +1,23 @@
 [
     {
+        "merged": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-merged_res-26:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-main-20:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "com.example.shareprefcont.app-merged_res-26:/mipmap-xhdpi_ic_launcher.png.flat",
         "source": "com.example.shareprefcont.app-main-20:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.shareprefcont.app-merged_res-26:/drawable_launch_background.xml.flat",
-        "source": "com.example.shareprefcont.app-main-20:/drawable/launch_background.xml"
-    },
-    {
         "merged": "com.example.shareprefcont.app-merged_res-26:/mipmap-mdpi_ic_launcher.png.flat",
         "source": "com.example.shareprefcont.app-main-20:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-merged_res-26:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-main-20:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-merged_res-26:\\drawable_launch_background.xml.flat",
+        "source": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-main-20:\\drawable\\launch_background.xml"
     },
     {
         "merged": "com.example.shareprefcont.app-merged_res-26:/mipmap-xxhdpi_ic_launcher.png.flat",
@@ -20,8 +28,20 @@
         "source": "com.example.shareprefcont.app-main-20:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.shareprefcont.app-merged_res-26:/drawable-v21_launch_background.xml.flat",
-        "source": "com.example.shareprefcont.app-main-20:/drawable-v21/launch_background.xml"
+        "merged": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-merged_res-26:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-main-20:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-merged_res-26:\\drawable-v21_launch_background.xml.flat",
+        "source": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-main-20:\\drawable-v21\\launch_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-merged_res-26:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-main-20:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-merged_res-26:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Excel\\.gradle\\daemon\\7.5\\com.example.shareprefcont.app-main-20:\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
         "merged": "com.example.shareprefcont.app-merged_res-26:/mipmap-hdpi_ic_launcher.png.flat",
